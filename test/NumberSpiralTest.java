@@ -29,6 +29,22 @@ public class NumberSpiralTest {
     }
 
     @Test
+    public void testNegativeIntInput() {
+        String invalidInput = "-3\n";
+        NumberSpiral numberSpiral = new NumberSpiral();
+        System.setIn(new ByteArrayInputStream(invalidInput.getBytes()));
+        numberSpiral.setScanner(new Scanner(System.in));
+
+        final ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
+
+        numberSpiral.startSpiral();
+
+        assertEquals(NumberSpiral.PROMPT + " Some error message. " + NumberSpiral.PROMPT_AGAIN, testOut.toString());
+    }
+
+
+    @Test
     public void testValidIntInput() {
         String validInput = "3";
         NumberSpiral numberSpiral = new NumberSpiral();
