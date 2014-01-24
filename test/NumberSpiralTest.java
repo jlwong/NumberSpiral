@@ -1,5 +1,11 @@
 import main.NumberSpiral;
 import org.junit.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -42,4 +48,19 @@ public class NumberSpiralTest {
         assertEquals("0", spiralGrid[0][0]);
     }
 
+    @Test
+    public void testPrintSpiral(){
+        String[][] testSpiral = {{"6","7","8","9"},
+                                 {"5","0","1","10"},
+                                 {"4","3","2","11"},
+                                 {"", "", "", "12"},};
+
+        final ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
+
+        NumberSpiral numberSpiral = new NumberSpiral();
+        numberSpiral.printSpiral(testSpiral);
+
+        assertEquals(" 6  7  8  9 \n 5  0  1 10 \n 4  3  2 11 \n         12 \n", testOut.toString());
+    }
 }
