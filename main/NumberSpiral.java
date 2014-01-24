@@ -17,7 +17,7 @@ public class NumberSpiral {
         }
 
         int length = (int) Math.sqrt(spiralValue);
-        String[][] spiral = new String[length+1][length+1];
+        String[][] spiral = getInitialSpiral(length+1);
 
         // add initial 0 value to grid
         int currentNum = 0;
@@ -72,6 +72,22 @@ public class NumberSpiral {
 
         return spiral;
 
+    }
+
+    /**
+     * Create an n x n string array initialized to empty string.
+     *
+     * @param length is size of the arrays
+     * @return length x length array of empty strings
+     */
+    private String[][] getInitialSpiral(int length){
+        String[][] spiral = new String[length][length];
+        for (int row = 0; row < length; row++){
+            for(int col = 0; col < length; col++){
+                spiral[row][col] = "";
+            }
+        }
+        return spiral;
     }
 
     public void printSpiral(String[][] spiralGrid){
