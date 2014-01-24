@@ -52,6 +52,27 @@ public class NumberSpiralTest {
     }
 
     @Test
+    public void testLargeSpiral(){
+        int spiralValue = 110;
+        NumberSpiral numberSpiral = new NumberSpiral();
+        String[][] spiralGrid = numberSpiral.createSpiral(spiralValue);
+        assertNotNull(spiralGrid);
+        assertEquals(11, spiralGrid.length);
+        //assert diagonal values in spiral contains correct values
+        assertEquals("110", spiralGrid[0][0]);
+        assertEquals("72", spiralGrid[1][1]);
+        assertEquals("42", spiralGrid[2][2]);
+        assertEquals("20", spiralGrid[3][3]);
+        assertEquals("6", spiralGrid[4][4]);
+        assertEquals("0",   spiralGrid[5][5]);
+        assertEquals("2", spiralGrid[6][6]);
+        assertEquals("12", spiralGrid[7][7]);
+        assertEquals("30", spiralGrid[8][8]);
+        assertEquals("56", spiralGrid[9][9]);
+        assertEquals("90", spiralGrid[10][10]);
+    }
+
+    @Test
     public void testSingleValueInSpiral(){
         int spiralValue = 0;
         NumberSpiral numberSpiral = new NumberSpiral();
