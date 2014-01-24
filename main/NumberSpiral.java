@@ -1,5 +1,8 @@
 package main;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 /**
  * Created by jwong on 1/24/14.
  */
@@ -17,7 +20,7 @@ public class NumberSpiral {
         }
 
         int length = (int) Math.sqrt(spiralValue);
-        String[][] spiral = getInitialSpiral(length+1);
+        String[][] spiral = getInitialSpiral(length + 1);
 
         // add initial 0 value to grid
         int currentNum = 0;
@@ -71,7 +74,6 @@ public class NumberSpiral {
         }
 
         return spiral;
-
     }
 
     /**
@@ -101,16 +103,40 @@ public class NumberSpiral {
         int width = String.valueOf(length*length).length();
         String format = "%" + String.valueOf(width) + "s ";
         for(int row=0; row < length; row++){
-            for(int col=0; col < length; col++ ){
+            for(int col=0; col < length; col++){
                 System.out.print(String.format(format, spiral[row][col]));
             }
             System.out.println("");
         }
     }
 
+    /**
+     * Prompt the user for a value to generate the number spiral
+     *
+     * A spiral will be generated for any integer >= 0.
+     * For any other values the program will return an error message and end.
+     *
+     */
+    public void startSpiral(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please enter a non-negative integer: \n");
+        while (scanner.hasNext()){
+            int spiralSize = scanner.nextInt();
+            if (spiralSize >= 0) {
+                String[][] spiral = createSpiral(spiralSize);
+                printSpiral(spiral);
+            }
+            System.out.println("Create another spiral?[y/n]");
+            if(scanner.hasNext() && !(scanner.next().equalsIgnoreCase("y"))){
+                break;
+            }else{
+                System.out.print("Please enter a non-negative integer: \n");
+            }
+        }
+    }
+
     public static void main(String[] args){
         NumberSpiral numberSpiral = new NumberSpiral();
-        String[][] spiral = numberSpiral.createSpiral(12);
-        numberSpiral.printSpiral(spiral);
+        numberSpiral.startSpiral();
     }
 }
