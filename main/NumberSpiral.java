@@ -10,6 +10,7 @@ public class NumberSpiral {
 
     public static final String PROMPT = "Please enter a non-negative integer:\n";
     public static final String PROMPT_AGAIN = "Create another spiral?[y/n]\n";
+    public final static String ERROR_MSG = "That wasn't a non-negative integer.\n";
 
     private Scanner scanner;
 
@@ -35,7 +36,7 @@ public class NumberSpiral {
         int length = (int) Math.sqrt(spiralValue);
         String[][] spiral = getInitialSpiral(length + 1);
 
-        // add initial 0 value to grid
+        // add initial 0 value to spiral
         int currentNum = 0;
         int row = length/2;
         int col = length/2;
@@ -134,18 +135,27 @@ public class NumberSpiral {
         Scanner scanner = this.getScanner();
         System.out.print(PROMPT);
         while (scanner.hasNext()){
-            int spiralSize = scanner.nextInt();
-            if (spiralSize >= 0) {
-                String[][] spiral = createSpiral(spiralSize);
-                printSpiral(spiral);
+            try{
+                int spiralSize = scanner.nextInt();
+                if (spiralSize >= 0) {
+                    String[][] spiral = createSpiral(spiralSize);
+                    printSpiral(spiral);
+                }
+                else {
+                    System.out.print(ERROR_MSG);
+                }
+            }catch(InputMismatchException exception){
+                System.out.print(ERROR_MSG);
             }
+            scanner.nextLine(); // consume the eol for each input
             System.out.print(PROMPT_AGAIN);
             boolean inputPresent = scanner.hasNext();
             if(!inputPresent || (inputPresent && !(scanner.next().equalsIgnoreCase("y")))){
                 break;
             }else{
-                System.out.print(PROMPT);}
+                System.out.print(PROMPT);
             }
+        }
     }
 
     public static void main(String[] args){
