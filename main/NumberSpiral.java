@@ -90,11 +90,19 @@ public class NumberSpiral {
         return spiral;
     }
 
-    public void printSpiral(String[][] spiralGrid){
-        int length = spiralGrid.length;
+    /**
+     * Print out the spiral
+     *
+     * @param spiral n x n string array containing number spiral
+     */
+    public void printSpiral(String[][] spiral){
+        int length = spiral.length;
+        // pad values to match the width of largest possible value in spiral
+        int width = String.valueOf(length*length).length();
+        String format = "%" + String.valueOf(width) + "s ";
         for(int row=0; row < length; row++){
             for(int col=0; col < length; col++ ){
-                System.out.print(spiralGrid[row][col] + " ");
+                System.out.print(String.format(format, spiral[row][col]));
             }
             System.out.println("");
         }
@@ -102,7 +110,7 @@ public class NumberSpiral {
 
     public static void main(String[] args){
         NumberSpiral numberSpiral = new NumberSpiral();
-        String[][] spiral = numberSpiral.createSpiral(10);
+        String[][] spiral = numberSpiral.createSpiral(12);
         numberSpiral.printSpiral(spiral);
     }
 }
