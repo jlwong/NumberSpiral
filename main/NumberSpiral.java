@@ -4,20 +4,32 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Created by jwong on 1/24/14.
+ * Program that will create a clockwise number spiral based on user input.
+ *
+ * @author Jennifer Wong
  */
 public class NumberSpiral {
 
     public static final String PROMPT = "Please enter a non-negative integer:\n";
     public static final String PROMPT_AGAIN = "Create another spiral?[y/n]\n";
-    public final static String ERROR_MSG = "That wasn't a non-negative integer.\n";
+    public final static String ERROR_MSG = "That was not a non-negative integer.\n";
 
     private Scanner scanner;
 
+    /**
+     * Setter for scanner
+     *
+     * @param scanner - scanner so input can be read in through prompt or set through tests.
+     */
     public void setScanner(Scanner scanner){
         this.scanner = scanner;
     }
 
+    /**
+     * Getter scanner
+     *
+     * @return scanner - scanner to read input
+     */
     public Scanner getScanner(){
         return this.scanner;
     }
@@ -128,8 +140,7 @@ public class NumberSpiral {
      * Prompt the user for a value to generate the number spiral
      *
      * A spiral will be generated for any integer >= 0.
-     * For any other values the program will return an error message and end.
-     *
+     * For any other values the program will return an error message and re-prompt the user for a spiral value.
      */
     public void startSpiral(){
         Scanner scanner = this.getScanner();
@@ -158,6 +169,11 @@ public class NumberSpiral {
         }
     }
 
+    /**
+     * Main method that will execute on program start.
+     *
+     * @param args no arguments needed to run
+     */
     public static void main(String[] args){
         NumberSpiral numberSpiral = new NumberSpiral();
         numberSpiral.setScanner(new Scanner(System.in));
