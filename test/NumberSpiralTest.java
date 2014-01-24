@@ -13,50 +13,27 @@ import static org.junit.Assert.assertNotNull;
  * Created by jwong on 1/24/14.
  */
 public class NumberSpiralTest {
+
     @Test
     public void testNonIntInput() {
-        String invalidInput = "abc123\n";
-        NumberSpiral numberSpiral = new NumberSpiral();
-        System.setIn(new ByteArrayInputStream(invalidInput.getBytes()));
-        numberSpiral.setScanner(new Scanner(System.in));
-
-        final ByteArrayOutputStream testOut = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(testOut));
-
-        numberSpiral.startSpiral();
-
-        assertEquals(NumberSpiral.PROMPT + NumberSpiral.ERROR_MSG + NumberSpiral.PROMPT_AGAIN, testOut.toString());
+        String nonIntInput = "abc123\n";
+        String startSpiralOutput = getStartSpiralOutput(nonIntInput);
+        assertEquals(NumberSpiral.PROMPT + NumberSpiral.ERROR_MSG + NumberSpiral.PROMPT_AGAIN, startSpiralOutput);
     }
 
     @Test
     public void testNegativeIntInput() {
-        String invalidInput = "-3\n";
-        NumberSpiral numberSpiral = new NumberSpiral();
-        System.setIn(new ByteArrayInputStream(invalidInput.getBytes()));
-        numberSpiral.setScanner(new Scanner(System.in));
-
-        final ByteArrayOutputStream testOut = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(testOut));
-
-        numberSpiral.startSpiral();
-
-        assertEquals(NumberSpiral.PROMPT + NumberSpiral.ERROR_MSG + NumberSpiral.PROMPT_AGAIN, testOut.toString());
+        String negativeInput = "-3\n";
+        String startSpiralOutput = getStartSpiralOutput(negativeInput);
+        assertEquals(NumberSpiral.PROMPT + NumberSpiral.ERROR_MSG + NumberSpiral.PROMPT_AGAIN, startSpiralOutput);
     }
 
 
     @Test
     public void testValidIntInput() {
         String validInput = "3\n";
-        NumberSpiral numberSpiral = new NumberSpiral();
-        System.setIn(new ByteArrayInputStream(validInput.getBytes()));
-        numberSpiral.setScanner(new Scanner(System.in));
-
-        final ByteArrayOutputStream testOut = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(testOut));
-
-        numberSpiral.startSpiral();
-
-        assertEquals(NumberSpiral.PROMPT + "0 1 \n3 2 \n" + NumberSpiral.PROMPT_AGAIN, testOut.toString());
+        String startSpiralOutput = getStartSpiralOutput(validInput);
+        assertEquals(NumberSpiral.PROMPT + "0 1 \n3 2 \n" + NumberSpiral.PROMPT_AGAIN, startSpiralOutput);
 
     }
 
@@ -100,4 +77,18 @@ public class NumberSpiralTest {
 
         assertEquals(" 6  7  8  9 \n 5  0  1 10 \n 4  3  2 11 \n         12 \n", testOut.toString());
     }
+
+    private String getStartSpiralOutput(String input){
+        NumberSpiral numberSpiral = new NumberSpiral();
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        numberSpiral.setScanner(new Scanner(System.in));
+
+        final ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
+
+        numberSpiral.startSpiral();
+
+        return testOut.toString();
+    }
+
 }
