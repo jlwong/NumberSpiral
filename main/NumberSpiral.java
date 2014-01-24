@@ -16,8 +16,8 @@ public class NumberSpiral {
             return null;
         }
 
-        int length = (int) Math.sqrt(spiralValue)+1;
-        String[][] spiral = new String[length][length];
+        int length = (int) Math.sqrt(spiralValue);
+        String[][] spiral = new String[length+1][length+1];
 
         // add initial 0 value to grid
         int currentNum = 0;
@@ -74,6 +74,19 @@ public class NumberSpiral {
 
     }
 
+    public void printSpiral(String[][] spiralGrid){
+        int length = spiralGrid.length;
+        for(int row=0; row < length; row++){
+            for(int col=0; col < length; col++ ){
+                System.out.print(spiralGrid[row][col] + " ");
+            }
+            System.out.println("");
+        }
+    }
+
     public static void main(String[] args){
+        NumberSpiral numberSpiral = new NumberSpiral();
+        String[][] spiral = numberSpiral.createSpiral(10);
+        numberSpiral.printSpiral(spiral);
     }
 }
