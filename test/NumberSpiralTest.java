@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
 public class NumberSpiralTest {
     @Test
     public void testNonIntInput() {
-        String invalidInput = "abc123";
+        String invalidInput = "abc123\n";
         NumberSpiral numberSpiral = new NumberSpiral();
         System.setIn(new ByteArrayInputStream(invalidInput.getBytes()));
         numberSpiral.setScanner(new Scanner(System.in));
@@ -25,7 +25,7 @@ public class NumberSpiralTest {
 
         numberSpiral.startSpiral();
 
-        assertEquals(NumberSpiral.PROMPT + " Some error message. " + NumberSpiral.PROMPT_AGAIN, testOut.toString());
+        assertEquals(NumberSpiral.PROMPT + NumberSpiral.ERROR_MSG + NumberSpiral.PROMPT_AGAIN, testOut.toString());
     }
 
     @Test
@@ -40,13 +40,13 @@ public class NumberSpiralTest {
 
         numberSpiral.startSpiral();
 
-        assertEquals(NumberSpiral.PROMPT + " Some error message. " + NumberSpiral.PROMPT_AGAIN, testOut.toString());
+        assertEquals(NumberSpiral.PROMPT + NumberSpiral.ERROR_MSG + NumberSpiral.PROMPT_AGAIN, testOut.toString());
     }
 
 
     @Test
     public void testValidIntInput() {
-        String validInput = "3";
+        String validInput = "3\n";
         NumberSpiral numberSpiral = new NumberSpiral();
         System.setIn(new ByteArrayInputStream(validInput.getBytes()));
         numberSpiral.setScanner(new Scanner(System.in));
