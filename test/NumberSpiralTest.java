@@ -20,6 +20,17 @@ public class NumberSpiralTest {
 
     @Test
     public void testValidIntInput() {
+        String validInput = "3";
+        NumberSpiral numberSpiral = new NumberSpiral();
+        System.setIn(new ByteArrayInputStream(validInput.getBytes()));
+        numberSpiral.setScanner(new Scanner(System.in));
+
+        final ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(myOut));
+
+        numberSpiral.startSpiral();
+
+        assertEquals(NumberSpiral.PROMPT + "0 1 \n3 2 \n" + NumberSpiral.PROMPT_AGAIN, myOut.toString());
 
     }
 

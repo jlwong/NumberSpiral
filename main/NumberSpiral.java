@@ -8,6 +8,19 @@ import java.util.Scanner;
  */
 public class NumberSpiral {
 
+    public static final String PROMPT = "Please enter a non-negative integer:\n";
+    public static final String PROMPT_AGAIN = "Create another spiral?[y/n]\n";
+
+    private Scanner scanner;
+
+    public void setScanner(Scanner scanner){
+        this.scanner = scanner;
+    }
+
+    public Scanner getScanner(){
+        return this.scanner;
+    }
+
     /**
      * Create a clockwise number spiral based on a value entered by the user
      *
@@ -118,25 +131,26 @@ public class NumberSpiral {
      *
      */
     public void startSpiral(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Please enter a non-negative integer: \n");
+        Scanner scanner = this.getScanner();
+        System.out.print(PROMPT);
         while (scanner.hasNext()){
             int spiralSize = scanner.nextInt();
             if (spiralSize >= 0) {
                 String[][] spiral = createSpiral(spiralSize);
                 printSpiral(spiral);
             }
-            System.out.println("Create another spiral?[y/n]");
-            if(scanner.hasNext() && !(scanner.next().equalsIgnoreCase("y"))){
+            System.out.print(PROMPT_AGAIN);
+            boolean inputPresent = scanner.hasNext();
+            if(!inputPresent || (inputPresent && !(scanner.next().equalsIgnoreCase("y")))){
                 break;
             }else{
-                System.out.print("Please enter a non-negative integer: \n");
+                System.out.print(PROMPT);}
             }
-        }
     }
 
     public static void main(String[] args){
         NumberSpiral numberSpiral = new NumberSpiral();
+        numberSpiral.setScanner(new Scanner(System.in));
         numberSpiral.startSpiral();
     }
 }
